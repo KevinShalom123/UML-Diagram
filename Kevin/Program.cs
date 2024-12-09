@@ -88,3 +88,41 @@ public class Program
     }
 }
 
+public class Admin : User
+{
+    public DateTime LastLogin { get; set; }
+    public Admin(int userId, string userName, string password, DateTime lastLogin)
+        : base(userId, userName, password)
+    {
+        LastLogin = lastLogin;
+    }
+    public void UpdateLastLogin()
+    {
+        LastLogin = DateTime.Now;
+    }
+    public override void DisplayInfo()
+    {
+        base.DisplayInfo();
+        Console.WriteLine($"Last Login: {LastLogin}");
+    }
+}
+public class Customer : User
+{
+    public string Role { get; set; }
+    public string Status { get; set; }
+    public Customer(int userId, string userName, string password, string role, string status)
+        : base(userId, userName, password)
+    {
+        Role = role;
+        Status = status;
+    }
+    public void UpdateStatus(string newStatus)
+    {
+        Status = newStatus;
+    }
+    public override void DisplayInfo()
+    {
+        base.DisplayInfo();
+        Console.WriteLine($"Role: {Role}, Status: {Status}");
+    }
+}
